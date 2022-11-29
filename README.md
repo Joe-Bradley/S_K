@@ -28,7 +28,7 @@ classDef class4 fill:#ff83fa;
 
 ```mermaid
 graph LR
-a(seller):::class1 --> |give approve contrat to transfer MMD to buyer|b
+a(seller):::class1 --> |give approve contrat to transfer MMD to buyer|b([blockchain]):::class2
 b --> |receive premium MMD|c(buyer):::class4
 c-->|pay cMMD|b
 b -->|transfer premium MMD|a(seller):::class1
