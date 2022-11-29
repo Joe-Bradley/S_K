@@ -26,6 +26,20 @@ classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
 
+```mermaid
+graph LR
+a(seller):::class1 --> |give approve contrat to transfer MMD to buyer|b
+b --> |receive premium MMD|c(buyer):::class4
+c-->|pay cMMD|b
+b -->|transfer premium MMD|a(seller):::class1
+classDef class1 fill:#ffaf;
+classDef class2 fill:#00ccff;
+classDef class3 fill:#ffe7ba;
+classDef class4 fill:#ff83fa;
+```
+
+
+
 **exercise**
 
 ```mermaid
