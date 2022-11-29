@@ -17,8 +17,8 @@ Contract deployed to: 0xC2283AA608b5347555EDd7dDA5DC7BEA95025636
 ```mermaid
 graph LR
 a(seller):::class1 --> |deploy option with MMD locked|b([blockchain]):::class2
-b --> |buy option with MMD|c(buyer):::class4
-c-->|pay premium in MMD|b
+b --> |buy option with cMMD|c(buyer):::class4
+c-->|pay premium in cMMD|b
 b -->|transfer premium|a
 classDef class1 fill:#ffaf;
 classDef class2 fill:#00ccff;
