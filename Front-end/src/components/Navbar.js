@@ -1,13 +1,11 @@
 import React, {useState} from 'react'
 import './Navbar.css'
 import {
-    BrowserRouter,
     Link
   } from "react-router-dom";
 
 const Navbar = () => {
 const [click, setClick] = useState(false)
-const handleClick = () => setClick(!click)
 
 
     return (

@@ -4,8 +4,6 @@ import Footer from './Footer';
 import Form from './Form';
 import Connect from './Connect';
 import './Hero.css'
-import {ethers} from "ethers"
-import abi from "./abi.json"
 
 function Seller(){
     return (

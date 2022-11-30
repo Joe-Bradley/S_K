@@ -1,9 +1,3 @@
-Contract deployed to: 0xdB491786f7e1BDf8BA4a49089f9Fd580706505CF(option)
-Contract deployed to: 0x5f4576A8Cf609c9104353eB75f67023C7488ceed
-(stable_coin)
-Contract deployed to: 0xC2283AA608b5347555EDd7dDA5DC7BEA95025636
-(unstable_coin)
-
 # S-K
 
 ### Introduction
@@ -12,90 +6,81 @@ Contract deployed to: 0xC2283AA608b5347555EDd7dDA5DC7BEA95025636
 
 **Business scenario**
 
-**sell & buy** 
+**write option(cover)** 
 
 ```mermaid
 graph LR
-a(seller):::class1 --> |deploy option with MMD locked|b([blockchain]):::class2
-b --> |buy option with cMMD|c(buyer):::class4
-c-->|pay premium in cMMD|b
-b -->|transfer premium|a
+a(seller):::class1 --> |specify option parameter and transfer MMD to option contract|b([blockchain]):::class2
+b -->|record the seller and the option|a(seller):::class1
 classDef class1 fill:#ffaf;
 classDef class2 fill:#00ccff;
 classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
 
+**buy option**
+
 ```mermaid
 graph LR
-a(seller):::class1 --> |give approve contrat to transfer MMD to buyer|b([blockchain]):::class2
-b --> |receive premium MMD|c(buyer):::class4
-c-->|pay cMMD|b
-b -->|transfer premium MMD|a(seller):::class1
+b([blockchain]):::class2 --> |receive option|c(buyer):::class4
+c-->|pay premium cMMD|b
+b -->|transfer premium cMMD|a(seller):::class1
 classDef class1 fill:#ffaf;
 classDef class2 fill:#00ccff;
 classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
-
-
 
 **exercise**
 
 ```mermaid
 graph LR
-
-b([blockchain]):::class2 --> |receive K MMD|c(buyer):::class4
-c-->|pay S MMD|b
+c(buyer):::class4 --> |pay strike price cMMD|b([blockchain]):::class2
+b --> |receive MMD|c
+b -->|transfer strike price cMMD|a(seller):::class1
 classDef class1 fill:#ffaf;
 classDef class2 fill:#00ccff;
 classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
 
-**Retrive**
+**Retrive & Cancel**
 
 ```mermaid
 graph LR
-b([blockchain]):::class2 --> |get MMD |a(seller):::class1
+b([blockchain]):::class2 --> |transfer MMD and change option status|a(seller):::class1
 classDef class1 fill:#ffaf;
 classDef class2 fill:#00ccff;
 classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
 
-### How to Use
+### Contract information
 
-// to-do
+| contract      | address                                    |
+| ------------- | ------------------------------------------ |
+| option        | 0xdB491786f7e1BDf8BA4a49089f9Fd580706505CF |
+| stable_coin   | 0x5f4576A8Cf609c9104353eB75f67023C7488ceed |
+| unstable_coin | 0xC2283AA608b5347555EDd7dDA5DC7BEA95025636 |
+|               | 0xA0D3af97D8265112F74D68C21211B277a83E7BAF |
 
+### **How to use**
 
-### Future improvement
-1. The option buyer use stable coin to pay the premium. Not use mmd. or use mmd through uniswap to change the mmd token to cmmd (stable coin).
-2. The exchange rate between mmd1 and mmd2 should be implemented in the web app. (should allow the use to change)
-3. In the real world, the app should be able to keep track of all of the crypto assets prices. (not make use of random function as we did in our current app).
-4. For the option provider - the app will store wallet address and attach to the contract - error feedback
-5. The option list available needs to be updated so that we can only see the valid/available options. (remove expired and bought option contracts)
-
-
-
-#### Sell Option
-
-```mermaid
-graph LR
-b((Liqiudity pool)):::class2
-b --> |discounted premium|c(option buyer):::class4
-c --> |sell option|b
-classDef class1 fill:#ffaf;
-classDef class2 fill:#00ccff;
-classDef class3 fill:#ffe7ba;
-classDef class4 fill:#ff83fa;
-```
-
-```mermaid
-
-```
-
-### Business scenarios
+- prepare environment
+  - cd Back-end
+    - npm install --save-dev @openzeppelin/contracts
+    - npm install dotenv
+  - cd Front-end
+    - npm install
+- run tests
+  - cd Back-end
+    - npx hardhat test
+- deploy contract
+  - cd Back-end
+    - npx hardhat run scripts/deploy.ts --network etherdata
+- start webpage
+  - cd Front-end
+    - npm start
 
 #### Liqiud pool & Option buying
 
@@ -104,7 +89,7 @@ graph LR
 a(provider):::class1 --> |ETH| b((Liqiudity pool)):::class2
 d(liquidity provider):::class3 --> |MMD|b
 b --> |premium| a
-b --> |MMD tocken with option|c(option buyer):::class4
+b --> |issue tocken with option|c(option buyer):::class4
 c --> |premium|b
 classDef class1 fill:#ffaf;
 classDef class2 fill:#00ccff;

@@ -12,7 +12,8 @@ function Buyer() {
   const [userAddress, setUserAddress] = React.useState();
   const [options, setOptions] = React.useState([]);
 
-  const optionAddress = "0x45e53883BCECFc41d5dBCb45a5b23183e90eD0e2";
+  // const optionAddress = "0x45e53883BCECFc41d5dBCb45a5b23183e90eD0e2";
+  const optionAddress = "0xA0D3af97D8265112F74D68C21211B277a83E7BAF";
   const stableAddress = "0x5f4576A8Cf609c9104353eB75f67023C7488ceed";
   const unstableAddress = "0xC2283AA608b5347555EDd7dDA5DC7BEA95025636";
 
@@ -42,22 +43,22 @@ function Buyer() {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(optionAddress, abi, signer);
-    const tx6 = await contract.exercise(stableAddress, selectedOption, {
+    const tx6 = await contract.exercise(stableAddress, unstableAddress, selectedOption.id, {
       gasLimit: 2100000,
     });
     console.log(tx6);
   };
 
-//   const cancelOption = async () => {
-//     // exercise option2
-//     const provider = new ethers.providers.Web3Provider(window.ethereum);
-//     const signer = provider.getSigner();
-//     const contract = new ethers.Contract(optionAddress, abi, signer);
-//     const tx6 = await contract.cancelOption(stableAddress, selectedOption, {
-//       gasLimit: 2100000,
-//     });
-//     console.log(tx6);
-//   };
+  //   const cancelOption = async () => {
+  //     // exercise option2
+  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //     const signer = provider.getSigner();
+  //     const contract = new ethers.Contract(optionAddress, abi, signer);
+  //     const tx6 = await contract.cancelOption(stableAddress, selectedOption, {
+  //       gasLimit: 2100000,
+  //     });
+  //     console.log(tx6);
+  //   };
 
   const listOption = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -93,35 +94,39 @@ function Buyer() {
                 onClick={() => setSelectedOption(option)}
               >
                 <div>ID: {parseInt(option.id._hex, 16)}</div>
-                <div>Canceled: {option.canceled ? "true" : "false"}</div>
-                <div>Exercised: {option.exercised ? "true" : "false"}</div>
                 <div>Strike: {parseInt(option.strike._hex, 16)}</div>
+                <div>Premium: {parseInt(option.premium._hex, 16)}</div>
+                <div>Amount: {parseInt(option.amount._hex, 16)}</div>
+                <div>Expiry Date: 1700390808</div>
+                {/* <div>Canceled: {option.canceled ? "true" : "false"}</div> */}
+                <div>Exercised: {option.exercised ? "true" : "false"}</div>
                 <div>Buyer: {option.buyer}</div>
+                <div>Writer: {option.writer}</div>
               </div>
             ))}
           </div>
           <div className="right">
             <div className="input-container"></div>
             <div className="btn-group">
-            {selectedOption && selectedOption.buyer.startsWith("0x00") && (
-              <button
-                className="btn"
-                onClick={() => {
-                  let confirmed = window.confirm(
-                    "Buying Option: " + selectedOption
-                  );
-                  if (confirmed) {
-                    buyOption();
-                  }
-                }}
-              >
-                Buy Option: {selectedOption && selectedOption.id._hex}
-              </button>
-            )}
+              {selectedOption && selectedOption.buyer.startsWith("0x00") && (
+                <button
+                  className="btn"
+                  onClick={() => {
+                    let confirmed = window.confirm(
+                      "Buying Option: " + selectedOption
+                    );
+                    if (confirmed) {
+                      buyOption();
+                    }
+                  }}
+                >
+                  Buy Option: {selectedOption && parseInt(selectedOption.id._hex)}
+                </button>
+              )}
             </div>
             <div className="input-container"></div>
             <div className="btn-group">
-              {selectedOption && selectedOption.buyer === userAddress && (
+              {selectedOption && selectedOption.buyer === userAddress && selectedOption.exercised === false && (
                 <button
                   className="btn"
                   onClick={() => {
@@ -133,7 +138,7 @@ function Buyer() {
                     }
                   }}
                 >
-                  Exercise Option: {selectedOption && selectedOption.id._hex}
+                  Exercise Option: {selectedOption && parseInt(selectedOption.id._hex)}
                 </button>
               )}
             </div>

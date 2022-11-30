@@ -1,9 +1,6 @@
 import React from 'react'
 import './Hero.css'
-import {BrowserRouter as Router, Link} from 'react-router-dom'
 import Connect from './Connect.js'
-import { ethers } from "ethers"
-import abi from "./abi.json"
 
 const Hero = () => {
     return (
