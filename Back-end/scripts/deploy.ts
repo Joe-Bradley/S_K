@@ -9,17 +9,17 @@ async function main() {
   const Contract1 = await ethers.getContractFactory("Options");
   const contract1 = await Contract1.deploy();
   await contract1.deployed();
-  console.log("Contract deployed to:", contract1.address);
+  console.log("Options contract deployed to:", contract1.address);
 
-  // const Contract2 = await ethers.getContractFactory("SKCoin_stable_coin");
-  // const contract2 = await Contract2.deploy();
-  // await contract2.deployed();
-  // console.log("Contract deployed to:", contract2.address);
+  const Contract2 = await ethers.getContractFactory("SKCoin_stable_coin");
+  const contract2 = await Contract2.deploy();
+  await contract2.deployed();
+  console.log("SKCoin_stable_coin contract deployed to:", contract2.address);
 
-  // const Contract3 = await ethers.getContractFactory("SKCoin_Unstable_Asset");
-  // const contract3 = await Contract3.deploy();
-  // await contract3.deployed();
-  // console.log("Contract deployed to:", contract3.address);
+  const Contract3 = await ethers.getContractFactory("SKCoin_Unstable_Asset");
+  const contract3 = await Contract3.deploy();
+  await contract3.deployed();
+  console.log("SKCoin_Unstable_Asset contract deployed to:", contract3.address);
 
 }
 
