@@ -1,24 +1,30 @@
+
+
 # S-K
 
-### Introduction
+## Introduction
 
-**S-K is an on-chain peer to pool option trading protocol built on Ethereum**
+**S-K is an on-chain peer to peer option trading protocol built on Ethereum network**
 
-**Business scenario**
+## **Business scenario**
 
-**write option(cover)** 
+### Covered Call
+
+<img src="/Users/joebradley/Desktop/Cover-call-ADD-V1-551e4fa02e3a4af2bb0768956e8c0cc7.webp" alt="Cover-call-ADD-V1-551e4fa02e3a4af2bb0768956e8c0cc7" style="zoom:75%;" />
+
+### **Write Option** 
 
 ```mermaid
 graph LR
 a(seller):::class1 --> |specify option parameter and transfer MMD to option contract|b([blockchain]):::class2
-b -->|record the seller and the option|a(seller):::class1
+b -->|record the seller and the option info|a(seller):::class1
 classDef class1 fill:#ffaf;
 classDef class2 fill:#00ccff;
 classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
 
-**buy option**
+### **Buy Option**
 
 ```mermaid
 graph LR
@@ -31,7 +37,7 @@ classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
 
-**exercise**
+### **Exercise**
 
 ```mermaid
 graph LR
@@ -44,18 +50,18 @@ classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
 
-**Retrive & Cancel**
+### **Retrive & Cancel**
 
 ```mermaid
 graph LR
-b([blockchain]):::class2 --> |transfer MMD and change option status|a(seller):::class1
+b([blockchain]):::class2 --> |get MMD back |a(seller):::class1
 classDef class1 fill:#ffaf;
 classDef class2 fill:#00ccff;
 classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
 
-### Contract information
+### Contract Information
 
 | contract      | address                                    |
 | ------------- | ------------------------------------------ |
@@ -64,7 +70,7 @@ classDef class4 fill:#ff83fa;
 | unstable_coin | 0xC2283AA608b5347555EDd7dDA5DC7BEA95025636 |
 |               | 0xA0D3af97D8265112F74D68C21211B277a83E7BAF |
 
-### **How to use**
+### **How to Use**
 
 - prepare environment
   - cd Back-end
@@ -83,28 +89,30 @@ classDef class4 fill:#ff83fa;
     - npm start
 
 ### Further Imporvement
-#### Liqiud pool & Option buying
+
+we move from (peer to peer) to (peer to pool)
+
+#### Liqiudity pool & Option buying
 
 ```mermaid
 graph LR
 a(provider):::class1 --> |ETH| b((Liqiudity pool)):::class2
-d(liquidity provider):::class3 --> |MMD|b
-b --> |premium| a
-b --> |issue tocken with option|c(option buyer):::class4
-c --> |premium|b
+d(liquidity provider):::class3 --> |any MMD tocken|b
+b --> |issue tocken with option info|c(option buyer):::class4
+c --> |pay premium|b
 classDef class1 fill:#ffaf;
 classDef class2 fill:#00ccff;
 classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
 
-#### Exercise option
+#### Exercise Option
 
 ```mermaid
 graph LR
 b((Liqiudity pool)):::class2
-b --> |payoff in ETH|c(option buyer):::class4
-c --> |exercise option|b
+b --> |receive ETH|c(option buyer):::class4
+c --> |pay strike|b
 classDef class1 fill:#ffaf;
 classDef class2 fill:#00ccff;
 classDef class3 fill:#ffe7ba;
