@@ -14,12 +14,6 @@
 
 
 
-### Tokens
-
-MMD = stock 
-
-cMMD = HKD, USD
-
 ### **Write Option** 
 
 ```mermaid
