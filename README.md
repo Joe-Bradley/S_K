@@ -8,9 +8,9 @@
 
 ## **Business scenario**
 
-### Covered Call
+### Covered Call![1](Project_information/1.webp)
 
-<img src="/Users/joebradley/Desktop/Cover-call-ADD-V1-551e4fa02e3a4af2bb0768956e8c0cc7.webp" alt="Cover-call-ADD-V1-551e4fa02e3a4af2bb0768956e8c0cc7" style="zoom:75%;" />
+<img src=".." alt="Cover-call-ADD-V1-551e4fa02e3a4af2bb0768956e8c0cc7" style="zoom:75%;" />
 
 ### **Write Option** 
 
