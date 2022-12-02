@@ -18,7 +18,7 @@
 
 MMD = stock 
 
-cMMD = HKD
+cMMD = HKD, USD
 
 ### **Write Option** 
 
