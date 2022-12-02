@@ -13,7 +13,7 @@ function Buyer() {
   const [options, setOptions] = React.useState([]);
 
   // const optionAddress = "0x45e53883BCECFc41d5dBCb45a5b23183e90eD0e2";
-  const optionAddress = "0xA0D3af97D8265112F74D68C21211B277a83E7BAF";
+  const optionAddress = "0x6450CA7A30aCaa6daADC1285782A98F6D7216bF4";
   const stableAddress = "0x5f4576A8Cf609c9104353eB75f67023C7488ceed";
   const unstableAddress = "0xC2283AA608b5347555EDd7dDA5DC7BEA95025636";
 
@@ -25,10 +25,10 @@ function Buyer() {
     const contract1 = new ethers.Contract(stableAddress, abi1, signer);
     const contract2 = new ethers.Contract(unstableAddress, abi2, signer);
 
-    let tx1 = await contract1.approve(optionAddress, 10000000);
+    let tx1 = await contract1.approve(optionAddress, ethers.utils.parseEther((selectedOption.strike.mul(selectedOption.amount)).toString()));
     await tx1.wait();
 
-    let tx2 = await contract2.approve(optionAddress, 10000000);
+    let tx2 = await contract2.approve(optionAddress, ethers.utils.parseEther(selectedOption.amount.toString()));
     await tx2.wait();
 
     const tx6 = await contract.buyOption(stableAddress, selectedOption.id, {
@@ -95,8 +95,8 @@ function Buyer() {
               >
                 <div>ID: {parseInt(option.id._hex, 16)}</div>
                 <div>Strike: {parseInt(option.strike._hex, 16)}</div>
-                <div>Premium: {parseInt(option.premium._hex, 16)}</div>
-                <div>Amount: {parseInt(option.amount._hex, 16)}</div>
+                <div>Premium: {ethers.utils.formatEther(option.premium)}</div>
+                <div>Amount:{ethers.utils.formatEther(option.amount)}</div>
                 <div>Expiry Date: 1700390808</div>
                 {/* <div>Canceled: {option.canceled ? "true" : "false"}</div> */}
                 <div>Exercised: {option.exercised ? "true" : "false"}</div>

@@ -12,7 +12,7 @@ function Form() {
     // const [price, setPrice] = React.useState(0);
     // const optionAddress = "0xdB491786f7e1BDf8BA4a49089f9Fd580706505CF";
     // const optionAddress = "0x45e53883BCECFc41d5dBCb45a5b23183e90eD0e2";
-    const optionAddress = "0xA0D3af97D8265112F74D68C21211B277a83E7BAF";
+    const optionAddress = "0x6450CA7A30aCaa6daADC1285782A98F6D7216bF4";
     // const stableAddress = "0x5f4576A8Cf609c9104353eB75f67023C7488ceed";
     const unstableAddress = "0xC2283AA608b5347555EDd7dDA5DC7BEA95025636";
     const { option } = useParams()
@@ -27,11 +27,11 @@ function Form() {
         const contract2 = new ethers.Contract(unstableAddress, abi2, signer)
         // let tx1 = await contract1.approve(optionAddress, 10000000);
         // await tx1.wait();
-        let tx2 = await contract2.approve(optionAddress, 10000000);
+        let tx2 = await contract2.approve(optionAddress, ethers.utils.parseEther(amount.toString()));
         await tx2.wait();
 
         // write option1
-        const tx3 = await contract.writeOption(unstableAddress, strprice, premprice, 1700390808, amount, {
+        const tx3 = await contract.writeOption(unstableAddress, strprice, ethers.utils.parseEther(premprice.toString()), 1700390808, ethers.utils.parseEther(amount.toString()), {
             gasLimit: 2100000
         });
         await tx3.wait()

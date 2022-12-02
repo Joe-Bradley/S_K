@@ -231,10 +231,16 @@ contract Options{
         //Transfer premium payment from buyer to writer
         // require(sk_coin.transferFrom(msg.sender, sk_options[id].writer, sk_options[id].premium), "Incorrect amount of cMMD sent for premium");
         // require(msg.value==sk_options[id].premium, "Incorrect amount of MMD supplied");
-        bool success = IERC20(cont).transferFrom(msg.sender, address(this), sk_options[id].premium);
-        
-        console.log("transfer success: ", success);
-        require(success, "Incorrect amount of cMMD supplied");
+        bool success1 = IERC20(cont).transferFrom(msg.sender, address(this), sk_options[id].premium);
+
+        console.log("transfer success: ", success1);
+        require(success1, "Incorrect amount of cMMD supplied");
+
+        bool success2 =  IERC20(cont).transfer(sk_options[id].writer, sk_options[id].premium);
+
+        console.log("transfer success231321313: ", success1);
+        require(success2, "Incorrect amount of cMMD supplied");
+
 
         // recored buyer address
         sk_options[id].buyer = payable(msg.sender);

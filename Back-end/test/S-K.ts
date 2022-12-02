@@ -183,8 +183,13 @@ describe("S-K.sol", function () {
     expect(await (await options.sk_options(0)).canceled).to.equal(true);
 
     // buy option
+    expect(await sKCoin_stable_coin.balanceOf(writer.address)).to.equal(100000);
     await options.buyOption(unstable_tocken.address,1);
     expect(await (await options.sk_options(1)).buyer).to.equal(writer.address);
+    expect(await sKCoin_stable_coin.balanceOf(options.address)).to.equal(0);
+    expect(await sKCoin_stable_coin.balanceOf(buyer.address)).to.equal(100010);
+
+    
 
     // exercise option
     expect(await (await options.sk_options(1)).exercised).to.equal(false);
