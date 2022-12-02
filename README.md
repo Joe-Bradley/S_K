@@ -61,7 +61,7 @@ classDef class3 fill:#ffe7ba;
 classDef class4 fill:#ff83fa;
 ```
 
-### Contract Information
+## Contract Information
 
 | contract      | address                                    |
 | ------------- | ------------------------------------------ |
@@ -70,7 +70,7 @@ classDef class4 fill:#ff83fa;
 | unstable_coin | 0xC2283AA608b5347555EDd7dDA5DC7BEA95025636 |
 |               | 0xA0D3af97D8265112F74D68C21211B277a83E7BAF |
 
-### **How to Use**
+## **How to Use**
 
 - prepare environment
   - cd Back-end
@@ -88,7 +88,7 @@ classDef class4 fill:#ff83fa;
   - cd Front-end
     - npm start
 
-### Further Imporvement
+## Further Imporvement
 
 we move from (peer to peer) to (peer to pool)
 
